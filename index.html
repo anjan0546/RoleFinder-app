@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Job Matcher</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <h1>💼 RoleFinder</h1>
+
+  <!-- AUTH SECTION -->
+  <div id="authSection">
+    <h2 id="formTitle">Signup</h2>
+
+    <input id="email" type="text" placeholder="Enter email" />
+    <input id="password" type="password" placeholder="Enter password" />
+
+    <button id="authBtn">Signup</button>
+
+    <p class="toggle">
+      Already have account?
+      <span id="toggleLink">Login</span>
+    </p>
+  </div>
+
+  <!-- JOB SECTION -->
+  <div id="jobSection" style="display:none;">
+
+    <button id="themeToggle">🌙 Toggle Theme</button>
+
+    <div class="button-group">
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+    <input id="skillsInput" placeholder="Enter skills (html, css, js)" />
+
+    <div class="button-group">
+      <button id="matchBtn">Find Your Role</button>
+      <button id="backBtn" style="display:none;">⬅ Back</button>
+    </div>
+
+    <div id="suggestions" class="suggestions-box"></div>
+
+    <div id="results"></div>
+
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
