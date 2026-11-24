@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoleFinder – Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <!-- Animated background particles -->
+  <div class="bg-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="auth-wrapper">
+
+    <!-- Brand panel (left) -->
+    <div class="brand-panel">
+      <div class="brand-content">
+        <div class="brand-logo">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="14" fill="url(#logoGrad)"/>
+            <path d="M14 34l8-14 6 10 4-6 6 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="34" cy="16" r="5" fill="white" fill-opacity="0.9"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="brand-name">RoleFinder</span>
+        </div>
+        <h2 class="brand-headline">Find the career<br/>you were built for.</h2>
+        <p class="brand-sub">Match your skills with the world's best tech roles — instantly and accurately.</p>
+
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-number">16+</span>
+            <span class="stat-label">Job Roles</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">AI</span>
+            <span class="stat-label">Skill Match</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">Free</span>
+            <span class="stat-label">Forever</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth Card (right) -->
+    <div class="auth-card-wrapper">
+      <div class="auth-card">
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="tab active" id="loginTab" onclick="switchTab('login')">Login</button>
+          <button class="tab" id="signupTab" onclick="switchTab('signup')">Sign Up</button>
+        </div>
+
+        <!-- ===== LOGIN FORM ===== -->
+        <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+          <div class="form-header">
+            <h1>Welcome back 👋</h1>
+            <p>Sign in to your RoleFinder account</p>
+          </div>
+
+          <div class="form-group">
+            <label for="loginEmail">Email address</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+                <path d="M2.5 6.5l7.5 5 7.5-5M3 5h14a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <input id="loginEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+                <rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M7 9V7a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required />
+              <button type="button" class="eye-btn" onclick="togglePwd('loginPassword', this)">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="loginError" class="error-msg" style="display:none;"></div>
+          <div id="loginSuccess" class="success-msg" style="display:none;"></div>
+
+          <button type="submit" class="btn-primary" id="loginBtn">
+            <span class="btn-text">Sign In</span>
+            <div class="btn-spinner" style="display:none;"></div>
+          </button>
+
+          <p class="form-footer">
+            Don't have an account? <span class="link" onclick="switchTab('signup')">Create one →</span>
+          </p>
+        </form>
+
+        <!-- ===== SIGNUP FORM ===== -->
+        <form id="signupForm" class="auth-form" style="display:none;" onsubmit="handleSignup(event)">
+          <div class="form-header">
+            <h1>Create account ✨</h1>
+            <p>Start matching your skills to roles today</p>
+          </div>
+
+          <div class="form-group">
+            <label for="signupEmail">Email address</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+                <path d="M2.5 6.5l7.5 5 7.5-5M3 5h14a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <div class="input-wrapper">
+              <svg class="input-icon" viewBox="0 0 20 20" fill="none">
+                <rect x="4" y="9" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M7 9V7a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <input id="signupPassword" type="password" placeholder="Min. 6 characters" autocomplete="new-password" required />
+              <button type="button" class="eye-btn" onclick="togglePwd('signupPassword', this)">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+            <!-- Strength bar -->
+            <div class="strength-bar" id="strengthBar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <span class="strength-label" id="strengthLabel"></span>
+          </div>
+
+          <div id="signupError" class="error-msg" style="display:none;"></div>
+          <div id="signupSuccess" class="success-msg" style="display:none;"></div>
+
+          <button type="submit" class="btn-primary" id="signupBtn">
+            <span class="btn-text">Create Account</span>
+            <div class="btn-spinner" style="display:none;"></div>
+          </button>
+
+          <p class="form-footer">
+            Already have an account? <span class="link" onclick="switchTab('login')">Sign in →</span>
+          </p>
+        </form>
+
+      </div><!-- /auth-card -->
+    </div><!-- /auth-card-wrapper -->
+
+  </div><!-- /auth-wrapper -->
+
+  <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+/* ===================================================================
+   auth.css — Premium Login / Signup Styles for RoleFinder
+   =================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary:      #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary:    #8b5cf6;
+  --success:      #10b981;
+  --danger:       #ef4444;
+  --warn:         #f59e0b;
+  --bg:           #0f0f1a;
+  --surface:      #161627;
+  --surface2:     #1e1e35;
+  --border:       rgba(255,255,255,0.08);
+  --text:         #f1f1f5;
+  --text-muted:   #9999bb;
+  --radius:       16px;
+  --transition:   0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===================== BACKGROUND PARTICLES ===================== */
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-particles span {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  animation: float 20s infinite;
+  opacity: 0.08;
+}
+
+.bg-particles span:nth-child(1)  { width:300px; height:300px; background:var(--primary);   top:-80px;  left:-60px;  animation-delay:0s;    animation-duration:18s; }
+.bg-particles span:nth-child(2)  { width:200px; height:200px; background:var(--secondary); top:40%;    left:60%;    animation-delay:3s;    animation-duration:22s; }
+.bg-particles span:nth-child(3)  { width:150px; height:150px; background:#06b6d4;          bottom:5%;  left:10%;    animation-delay:6s;    animation-duration:16s; }
+.bg-particles span:nth-child(4)  { width:100px; height:100px; background:var(--primary);   top:30%;    left:80%;    animation-delay:1.5s;  animation-duration:24s; }
+.bg-particles span:nth-child(5)  { width:250px; height:250px; background:var(--secondary); bottom:-50px; right:-50px; animation-delay:4s; animation-duration:20s; }
+.bg-particles span:nth-child(6)  { width: 80px; height: 80px; background:#34d399;           top:70%;    left:50%;    animation-delay:8s;    animation-duration:14s; }
+.bg-particles span:nth-child(7)  { width:120px; height:120px; background:var(--primary);   top:10%;    left:40%;    animation-delay:2s;    animation-duration:19s; }
+.bg-particles span:nth-child(8)  { width: 60px; height: 60px; background:#f472b6;           top:50%;    left:25%;    animation-delay:5s;    animation-duration:21s; }
+.bg-particles span:nth-child(9)  { width:180px; height:180px; background:#818cf8;           top:85%;    left:70%;    animation-delay:7s;    animation-duration:17s; }
+.bg-particles span:nth-child(10) { width: 90px; height: 90px; background:#34d399;           top:20%;    left:90%;    animation-delay:9s;    animation-duration:23s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) scale(1); }
+  33%      { transform: translateY(-40px) scale(1.05); }
+  66%      { transform: translateY(20px) scale(0.97); }
+}
+
+/* ===================== LAYOUT ===================== */
+.auth-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===================== BRAND PANEL (LEFT) ===================== */
+.brand-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 50px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(139,92,246,0.10) 100%);
+  border-right: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+@media (max-width: 768px) { .brand-panel { display: none; } }
+
+.brand-content { max-width: 380px; }
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff, #c7d2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-headline {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  background: linear-gradient(135deg, #fff 30%, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.brand-sub {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+}
+
+.stats-row {
+  display: flex;
+  gap: 32px;
+}
+
+.stat { text-align: center; }
+
+.stat-number {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ===================== AUTH CARD (RIGHT) ===================== */
+.auth-card-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 480px;
+  padding: 40px 32px;
+}
+
+@media (max-width: 768px) {
+  .auth-card-wrapper { flex: 1; padding: 24px 20px; }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px 36px 40px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  animation: slideUp 0.5s var(--transition) both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== TABS ===================== */
+.auth-tabs {
+  display: flex;
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 32px;
+  gap: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  color: var(--text-muted);
+  background: transparent;
+  transition: var(--transition);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.4);
+}
+
+/* ===================== FORM HEADER ===================== */
+.form-header { margin-bottom: 28px; }
+
+.form-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ===================== FORM ELEMENTS ===================== */
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 13px 44px 13px 42px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: var(--transition);
+  -webkit-appearance: none;
+}
+
+.input-wrapper input::placeholder { color: rgba(255,255,255,0.2); }
+
+.input-wrapper input:focus {
+  border-color: var(--primary);
+  background: rgba(99,102,241,0.06);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+/* Eye button */
+.eye-btn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color var(--transition);
+}
+
+.eye-btn svg { width: 18px; height: 18px; }
+.eye-btn:hover { color: var(--text); }
+
+/* ===================== PASSWORD STRENGTH ===================== */
+.strength-bar {
+  height: 4px;
+  background: var(--surface2);
+  border-radius: 99px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 99px;
+  width: 0%;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+.strength-label {
+  font-size: 11px;
+  font-weight: 500;
+  display: block;
+  margin-top: 4px;
+  transition: color 0.3s;
+}
+
+/* ===================== MESSAGES ===================== */
+.error-msg {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-msg {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: #6ee7b7;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== PRIMARY BUTTON ===================== */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(99,102,241,0.5); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-text { position: relative; z-index: 1; }
+
+.btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ===================== FOOTER ===================== */
+.form-footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.link {
+  color: #818cf8;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.link:hover { color: white; }
