@@ -2,7 +2,7 @@
 // auth.js — RoleFinder Authentication Logic
 // ============================================================
 
-const API = "http://localhost:5000";
+const API = "https://rolefinder-api.onrender.com";
 
 // Redirect if already logged in
 if (localStorage.getItem("rf_token")) {
